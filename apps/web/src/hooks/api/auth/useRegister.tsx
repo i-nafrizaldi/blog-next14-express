@@ -16,7 +16,7 @@ const useRegister = () => {
   const router = useRouter();
   const register = async (payload: RegisterArgs) => {
     try {
-      await axiosInstance.post('/auth/register', payload);
+      await axiosInstance.post<RegisterResponse>('/auth/register', payload);
       router.push('/login');
     } catch (error) {
       console.log(error);

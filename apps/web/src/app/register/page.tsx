@@ -5,7 +5,6 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import useRegister from '@/hooks/api/auth/useRegister';
 import { appConfig } from '@/utils/config';
 import { useFormik } from 'formik';
-import { useRouter } from 'next/navigation';
 import { RegisterValidationSchema } from './validationSchema';
 
 const Register = () => {
