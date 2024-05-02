@@ -1,12 +1,14 @@
 'use client';
 
-import { useAppDispatch, useAppSelector } from '@/redux/hooks';
+import { useAppSelector } from '@/redux/hooks';
 import { logoutAction } from '@/redux/slices/userSlice';
+import { useRouter } from 'next/navigation';
 import { useDispatch } from 'react-redux';
-import { boolean } from 'yup';
 
 const Navbar = () => {
   const { id } = useAppSelector((state) => state.user);
+
+  const router = useRouter();
 
   const dispactch = useDispatch();
 
@@ -23,16 +25,16 @@ const Navbar = () => {
 
           {Boolean(id) ? (
             <div className="flex items-center gap-8">
-              <h2>Home</h2>
-              <h2>Write</h2>
-              <h2>Profile</h2>
-              <h2>Logout</h2>
+              <h2 onClick={() => router.push('/')}>Home</h2>
+              <h2 onClick={() => router.push('/write')}>Write</h2>
+              <h2 onClick={() => router.push('/profile')}>Profile</h2>
+              <h2 onClick={logout}>Logout</h2>
             </div>
           ) : (
             <div className="flex items-center gap-8">
-              <h2>Home</h2>
-              <h2>Login</h2>
-              <h2>Register</h2>
+              <h2 onClick={() => router.push('/')}>Home</h2>
+              <h2 onClick={() => router.push('/login')}>Login</h2>
+              <h2 onClick={() => router.push('/register')}>Register</h2>
             </div>
           )}
         </div>
