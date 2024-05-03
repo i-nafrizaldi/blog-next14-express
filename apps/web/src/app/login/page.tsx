@@ -6,9 +6,11 @@ import useLogin from '@/hooks/api/auth/useLogin';
 import { appConfig } from '@/utils/config';
 import { useFormik } from 'formik';
 import { LoginValidationSchema } from './validationSchema';
+import { useRouter } from 'next/navigation';
 
 const Login = () => {
   const { login } = useLogin();
+  const router = useRouter();
 
   const { baseUrl } = appConfig;
 
@@ -60,6 +62,13 @@ const Login = () => {
                   type="password"
                   value={values.password}
                 />
+
+                <p
+                  className="text-end text-xs cursor-pointer"
+                  onClick={() => router.push('/forgot-password')}
+                >
+                  Forgot Password
+                </p>
               </div>
               <Button className="mt-6 w-full" type="submit">
                 Login
