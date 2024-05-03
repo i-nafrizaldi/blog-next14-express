@@ -7,24 +7,29 @@ import { useState } from 'react';
 import { toast } from 'sonner';
 
 // interface IForgotPassArgs extends Pick<User, 'email'> {}
-interface IForgotPassResponse {
+interface ResetPasswordResponse {
   message: string;
 }
-const useForgotPassword = () => {
+const useResetPassword = () => {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
 
-  const forgotPassword = async (email: string) => {
+  const resetPassword = async (password: string, token: string) => {
     try {
       setIsLoading(true);
-      const { data } = await axiosInstance.post<IForgotPassResponse>(
-        '/auth/forgot-password',
-        { email },
+      const { data } = await axiosInstance.patch<ResetPasswordResponse>(
+        '/auth/reset-password',
+        { password },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
       );
 
       toast(data.message);
 
-      router.replace('/login');
+      router.replace('/');
     } catch (error) {
       console.log(error);
       if (error instanceof AxiosError) {
@@ -34,8 +39,7 @@ const useForgotPassword = () => {
       setIsLoading(false);
     }
   };
-
-  return { forgotPassword, isLoading };
+  return { resetPassword, isLoading };
 };
 
-export default useForgotPassword;
+export default useResetPassword;
