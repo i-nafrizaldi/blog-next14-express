@@ -1,4 +1,4 @@
-import { hashPasswrord } from '@/lib/bcrypt';
+import { hashPassword } from '@/lib/bcrypt';
 import prisma from '@/prisma';
 
 export const resetPasswordService = async (
@@ -14,7 +14,7 @@ export const resetPasswordService = async (
       throw new Error('Account not found');
     }
 
-    const hashedPassword = await hashPasswrord(password);
+    const hashedPassword = await hashPassword(password);
 
     await prisma.user.update({
       where: { id: userId },

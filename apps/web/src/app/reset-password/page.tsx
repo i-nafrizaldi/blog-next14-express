@@ -46,6 +46,7 @@ const ResetPassword: React.FC = () => {
               <div className="grid w-full items-center gap-4">
                 <FormInput
                   name="password"
+                  label="Password"
                   type="Password"
                   placeholder="Password"
                   error={errors.password}
@@ -56,6 +57,7 @@ const ResetPassword: React.FC = () => {
                 />
                 <FormInput
                   name="confirmPassword"
+                  label="Confirm Password"
                   type="password"
                   placeholder="Confirm Password"
                   error={errors.confirmPassword}

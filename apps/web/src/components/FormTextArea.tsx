@@ -1,15 +1,13 @@
 'use client';
 
-import { HTMLInputTypeAttribute } from 'react';
 import { FormikHandlers } from 'formik';
-import { Input } from './ui/input';
 import { Label } from './ui/label';
+import { Textarea } from './ui/textarea';
 
 interface FormInputProps {
   name: string;
   label: string;
   placeholder: string;
-  type: HTMLInputTypeAttribute;
   handleChange: FormikHandlers['handleChange'];
   handleBlur: FormikHandlers['handleBlur'];
   value: string;
@@ -17,11 +15,10 @@ interface FormInputProps {
   error: string | undefined;
 }
 
-const FormInput: React.FC<FormInputProps> = ({
+const FormTextArea: React.FC<FormInputProps> = ({
   name,
   label,
   placeholder,
-  type,
   handleChange,
   handleBlur,
   value,
@@ -30,20 +27,21 @@ const FormInput: React.FC<FormInputProps> = ({
 }) => {
   return (
     <div className="flex flex-col space-y-1.5">
-      <Label htmlFor={name} className={isError ? 'text-red-500' : ''}>
+      <Label htmlFor={name} className={isError ? 'text-red-500' : 'text-black'}>
         {label}
       </Label>
-      <Input
+      <Textarea
         name={name}
         placeholder={placeholder}
-        type={type}
         onChange={handleChange}
         value={value}
         onBlur={handleBlur}
+        style={{ resize: 'none' }}
+        rows={4}
       />
       {isError ? <div className="text-xs text-red-500">{error}</div> : null}
     </div>
   );
 };
 
-export default FormInput;
+export default FormTextArea;

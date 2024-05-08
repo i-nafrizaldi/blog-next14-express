@@ -17,7 +17,7 @@ export default function AuthGuard(Component: any) {
     }, []);
 
     useEffect(() => {
-      if (!id && !false) {
+      if (!id && !isLoading) {
         redirect('/login');
       }
     }, [id, isLoading]);
