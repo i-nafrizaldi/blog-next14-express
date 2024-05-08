@@ -1,6 +1,7 @@
 import { User } from '@prisma/client';
-import { hashPasswrord } from '../../lib/bcrypt';
+
 import prisma from '@/prisma';
+import { hashPassword } from '@/lib/bcrypt';
 
 export const registerService = async (
   body: Pick<User, 'email' | 'fullName' | 'password'>,
@@ -15,7 +16,7 @@ export const registerService = async (
       throw new Error('Email already exist');
     }
 
-    const hashedPassword = await hashPasswrord(password);
+    const hashedPassword = await hashPassword(password);
 
     const newUser = await prisma.user.create({
       data: { ...body, password: hashedPassword },

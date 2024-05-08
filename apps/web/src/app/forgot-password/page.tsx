@@ -36,6 +36,7 @@ const ForgotPassword: React.FC = () => {
               <div className="grid w-full items-center gap-4">
                 <FormInput
                   name="email"
+                  label="Email"
                   error={errors.email}
                   isError={!!touched.email && !!errors.email}
                   handleBlur={handleBlur}

@@ -17,7 +17,9 @@ const useKeepLogin = () => {
         await axiosInstance.get<KeepLoginResponse>('/auth/keep-login');
 
       dispatch(loginAction(data.data));
-    } catch (error) {}
+    } catch (error) {
+      throw error;
+    }
   };
   return { keepLogin };
 };

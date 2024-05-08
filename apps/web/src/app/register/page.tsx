@@ -40,6 +40,7 @@ const Register = () => {
                 {/* NAME */}
                 <FormInput
                   name="fullName"
+                  label="Full Name"
                   error={formik.errors.fullName}
                   isError={
                     !!formik.touched.fullName && !!formik.errors.fullName
@@ -54,6 +55,7 @@ const Register = () => {
                 {/* EMAIL */}
                 <FormInput
                   name="email"
+                  label="Email"
                   error={formik.errors.email}
                   isError={!!formik.touched.email && !!formik.errors.email}
                   handleBlur={formik.handleBlur}
@@ -66,6 +68,7 @@ const Register = () => {
                 {/* PASSWORD */}
                 <FormInput
                   name="password"
+                  label="Password"
                   error={formik.errors.password}
                   isError={
                     !!formik.touched.password && !!formik.errors.password

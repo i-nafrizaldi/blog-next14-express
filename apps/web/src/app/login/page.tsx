@@ -42,6 +42,7 @@ const Login = () => {
                 {/* EMAIL */}
                 <FormInput
                   name="email"
+                  label='Email'
                   error={errors.email}
                   isError={!!touched.email && !!errors.email}
                   handleBlur={handleBlur}
@@ -54,6 +55,7 @@ const Login = () => {
                 {/* PASSWORD */}
                 <FormInput
                   name="password"
+                  label='Password'
                   error={errors.password}
                   isError={!!touched.password && !!errors.password}
                   handleBlur={handleBlur}
