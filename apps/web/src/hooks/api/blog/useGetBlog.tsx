@@ -14,11 +14,9 @@ const useGetBlog = (id: number) => {
     try {
       const { data } = await axiosInstance.get(`/blogs/${id}`);
       setData(data);
-      
-      
     } catch (error) {
       if (error instanceof AxiosError) {
-        toast.success;
+        toast.error(error.response?.data)
       }
     } finally {
       setIsLoading(false);
@@ -26,6 +24,7 @@ const useGetBlog = (id: number) => {
   };
   useEffect(() => {
     getBlog();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return { blog: data, isLoading, refetch: getBlog };
 };
