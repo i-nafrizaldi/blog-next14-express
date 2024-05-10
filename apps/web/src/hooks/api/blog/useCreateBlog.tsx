@@ -3,11 +3,9 @@
 import { axiosInstance } from '@/lib/axios';
 import { Blog, IFormCreateBlog } from '@/types/blog.type';
 import { AxiosError } from 'axios';
-import { forEach } from 'cypress/types/lodash';
 import { useRouter } from 'next/navigation';
 import { FileWithPath } from 'react-dropzone';
 import { toast } from 'sonner';
-import { string } from 'yup';
 
 const useCreateBlog = () => {
   const router = useRouter();
