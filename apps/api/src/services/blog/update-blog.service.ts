@@ -1,6 +1,9 @@
 import prisma from '@/prisma';
 import { Blog } from '@prisma/client';
-import join from 'path';
+import { join } from 'path';
+import fs from 'fs';
+
+const defaultDir = '../../../public/images';
 
 export const updateBlogService = async (
   id: number,
@@ -27,7 +30,11 @@ export const updateBlogService = async (
 
     if (file) {
       body.thumbnail = `/images/${file.filename}`;
-      //   const imagePath = join(__dirname, '../../../public' + blog.thumbnail);
+      const imagePath = join(__dirname, '../../../public' + blog.thumbnail);
+
+      if (fs.existsSync(imagePath)) {
+        fs.unlinkSync(imagePath);
+      }
     }
 
     return await prisma.blog.update({
@@ -35,6 +42,11 @@ export const updateBlogService = async (
       data: { ...body },
     });
   } catch (error) {
+    const imagePath = join(__dirname, defaultDir + file?.filename);
+
+    if (fs.existsSync(imagePath)) {
+      fs.unlinkSync(imagePath);
+    }
     throw error;
   }
 };

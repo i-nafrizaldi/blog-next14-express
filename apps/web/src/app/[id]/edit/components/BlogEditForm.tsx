@@ -8,8 +8,14 @@ import RichTextEditor from '@/components/RichTextEditor';
 import { Button } from '@/components/ui/button';
 import { IFormBlog } from '@/types/blog.type';
 import { useFormikContext } from 'formik';
+import { Loader2 } from 'lucide-react';
+import { FC } from 'react';
 
-const BlogEditForm = () => {
+interface BlogEditFormProps {
+  isLoading: boolean;
+}
+
+const BlogEditForm: FC<BlogEditFormProps> = ({ isLoading }) => {
   const {
     handleSubmit,
     handleChange,
@@ -82,7 +88,14 @@ const BlogEditForm = () => {
         />
 
         <div className="mb-4 flex justify-end">
-          <Button type="submit">Submit</Button>
+          <Button
+            type="submit"
+            className=" mt-6 w-full text-white"
+            disabled={isLoading}
+          >
+            {isLoading ?? <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+            {isLoading ? 'Email sent' : 'Submit'}
+          </Button>
         </div>
       </div>
     </form>
