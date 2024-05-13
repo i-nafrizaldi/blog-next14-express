@@ -7,7 +7,7 @@ interface CreateBlogBody
 export const createBlogService = async (
   body: CreateBlogBody,
   file: Express.Multer.File,
-) => {
+) => { 
   try {
     const { title, userId } = body;
 
