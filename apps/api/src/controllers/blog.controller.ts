@@ -1,4 +1,5 @@
 import { createBlogService } from '@/services/blog/create-blog.services';
+import { deleteBlogService } from '@/services/blog/delete-blog.service';
 import { getBlogService } from '@/services/blog/get-blog.service';
 import { getBlogsService } from '@/services/blog/get-blogs.service';
 import { updateBlogService } from '@/services/blog/update-blog.service';
@@ -64,6 +65,18 @@ export class BlogController {
       );
 
       return res.status(201).send(result);
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  async deleteBlogController(req: Request, res: Response, next: NextFunction) {
+    try {
+      await deleteBlogService(Number(req.params.id));
+
+      return res.status(201).send({
+        message: 'delete blog success',
+      });
     } catch (error) {
       next(error);
     }
