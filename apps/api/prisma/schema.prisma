@@ -33,16 +33,17 @@ model User {
 }
 
 model Blog {
-  id          Int      @id @default(autoincrement())
-  title      String   @unique
-  description String   @db.LongText()
+  id          Int       @id @default(autoincrement())
+  title       String    @unique
+  description String    @db.LongText()
   category    String
-  content     String   @db.LongText()
+  content     String    @db.LongText()
   thumbnail   String
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  deletedAt   DateTime?
   userId      Int
-  user        User     @relation(fields: [userId], references: [id])
+  user        User      @relation(fields: [userId], references: [id])
 
   @@map("blogs")
 }

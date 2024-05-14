@@ -10,6 +10,7 @@ export interface Blog {
   userId: number;
   createdAt: Date;
   updatedAt: Date;
+  deletedAt: Date;
 
   user: User;
 }
